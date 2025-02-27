@@ -16,7 +16,7 @@ export default async function Home() {
                         <div className="border p-4 rounded-lg hover:shadow-lg transition">
                             <img src={libro.portadaUrl || "/file.svg"} alt={libro.titulo} className="w-full h-48 object-cover" />
                             <h2 className="text-xl font-semibold mt-2">{libro.titulo}</h2>
-                            <p className="text-gray-600">por {libro.autor?.nombre && `Autor: ${libro.autor.nombre}`}</p>
+                            <p className="text-gray-600">por {libro.autor?.nombre && ` ${libro.autor.nombre}`}</p>
                         </div>
                     </Link>
                 ))}
