@@ -1,31 +1,61 @@
 import React from 'react'
 
 export default function AutorForm({ onSubmit }) {
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        const formData = new FormData(event.target)
+    const [nombre, setNombre] = useState("")
+    const [biografia, setBiografia] = useState("")
+    const [fotoUrl, setFotoUrl] = useState("")
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append("nombre", nombre)
+        formData.append("biografia", biografia)
+        formData.append("fotoUrl", fotoUrl)
         onSubmit(formData)
+        setNombre("")
+        setBiografia("")
+        setFotoUrl("")
     }
-
     return (
-        <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded shadow-md">
+        <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-                <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">Nombre</label>
-                <input type="text" name="nombre" id="nombre" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
+                <label htmlFor="nombre" className="block">
+                    Nombre
+                </label>
+                <input type="text" id="nombre" value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    className="w-full border rounded px-2 py-1"
+                    required
+                />
+            </div> 
+            <div>
+                <label htmlFor="biografia" className="block">
+                    Biografía
+                </label>
+                <textarea
+                    id="biografia"
+                    value={biografia}
+                    onChange={(e) => setBiografia(e.target.value)}
+                    className="w-full border rounded px-2 py-1"
+                    required
+                />
             </div>
             <div>
-                <label htmlFor="biografia" className="block text-sm font-medium text-gray-700">Biografía</label>
-                <textarea name="biografia" id="biografia" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
+                <label htmlFor="fotoUrl" className="block">
+                    URL de la foto
+                </label>
+                <input
+                    type="url"
+                    id="fotoUrl"
+                    value={fotoUrl}
+                    onChange={(e) => setFotoUrl(e.target.value)}
+                    className="w-full border rounded px-2 py-1"
+                    required
+                />
             </div>
-            <div>
-                <label htmlFor="fotoUrl" className="block text-sm font-medium text-gray-700">Foto URL</label>
-                <input type="url" name="fotoUrl" id="fotoUrl" required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm" />
-            </div>
-            <div>
-                <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
-                    Añadir Autor
-                </button>
-            </div>
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2
+   rounded">
+                Guardar Autor
+            </button>
         </form>
     )
 }
