@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Navbar from "../componentes/Navbar"
 
 async function getLibros() {
     const res = await fetch("http://localhost:4000/libro")
@@ -9,6 +10,7 @@ export default async function Home() {
     const libros = await getLibros()
     return (
         <div className="container mx-auto px-4">
+            <Navbar/>
             <h1 className="text-3xl font-bold my-4">Libros Disponibles</h1>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {libros.map((libro) => (
