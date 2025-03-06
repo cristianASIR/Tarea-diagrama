@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "./componentes/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +20,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      {/* Se añade la cabecera para inicar sesión en todas las páginas */}
+      <Navbar/>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
       </body>

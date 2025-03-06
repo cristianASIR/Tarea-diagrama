@@ -12,15 +12,21 @@ async function getAutores() {
     if (!res.ok) throw new Error("Failed to fetch autores")
     return res.json()
 }
-async function addLibro(formData) {
+async function addLibro(formData) { // Crear libro sí necesita token
+    const token = localStorage.getItem("token")
+    if (!token) throw new Error("No token found")
     const res = await fetch("http://localhost:4000/libro", {
         method: "POST",
         body: JSON.stringify({
             titulo: formData.get("titulo"),
             descripcion: formData.get("descripcion"),
             portadaUrl: formData.get("portadaUrl"),
-            autor: Number(formData.get("autorId")),
+            autor: formData.get("autorId"),
         }),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
     })
     if (!res.ok) throw new Error("Failed to add libro")
 }

@@ -53,7 +53,7 @@ export default function Navbar() {
                     ) : (
                         <form onSubmit={handleLogin} className="flex items-center gap-4">
                             <input type="text" placeholder="Email" value={email} onChange={(e) =>
-                                setUserEmail(e.target.value)} />
+                                setEmail(e.target.value)} />
                             <input type="password" placeholder="Password" value={password} onChange={(e) =>
                                 setPassword(e.target.value)} />
                             <button type="submit" className="bg-blue-500 px-4 py-1 rounded">
